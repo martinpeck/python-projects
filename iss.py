@@ -1,16 +1,10 @@
-import urllib.request
-import json
+import requests
 from datetime import datetime
 import webbrowser
- 
-def getiss():
-    # call opennotify api
-    response = urllib.request.urlopen('http://api.open-notify.org/iss-now.json')
-    mydata = response.readall().decode('utf-8')
-    return(mydata)
- 
-iss = getiss()
-pos = json.loads(iss)
+
+# get ISS position data
+response = requests.get('http://api.open-notify.org/iss-now.json')
+pos = response.json()
 
 lat = pos['iss_position']['latitude']
 lon = pos['iss_position']['longitude']

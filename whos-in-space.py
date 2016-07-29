@@ -1,9 +1,7 @@
-import urllib.request
-import json
+import requests
 
-response = urllib.request.urlopen('http://api.open-notify.org/astros.json')
-data = response.readall().decode('utf-8')
-json_data = json.loads(data)
+response = requests.get('http://api.open-notify.org/astros.json')
+json_data = response.json()
 
 number_of_people = json_data['number']
 people_in_space = json_data['people']
